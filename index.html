@@ -43,11 +43,13 @@
 Prerna, will you be mine in 2026? ❤️
 </h1>
 
-<button id="yesBtn" onclick="location.href='yes.html'">Yes ❤️</button>
+<button id="yesBtn" onclick="handleYes()">Yes ❤️</button>
 <button id="noBtn" onclick="handleNo()">No 😢</button>
 
 <script>
     let noCount = 0;
+    let yesClickedOnce = false;
+
     const noBtn = document.getElementById("noBtn");
     const yesBtn = document.getElementById("yesBtn");
     const question = document.getElementById("question");
@@ -63,6 +65,15 @@ Prerna, will you be mine in 2026? ❤️
         "Last chance before I get dramatic 😭"
     ];
 
+    function handleYes() {
+        if (!yesClickedOnce) {
+            question.innerText = "Too easy 😏 Real ones click 'No' at least once.";
+            yesClickedOnce = true;
+        } else {
+            window.location.href = "yes.html";
+        }
+    }
+
     function handleNo() {
         if (noCount < messages.length) {
             question.innerText = messages[noCount];
@@ -72,12 +83,10 @@ Prerna, will you be mine in 2026? ❤️
 
         noCount++;
 
-        // Make yes bigger
         let currentSize = window.getComputedStyle(yesBtn).fontSize;
         let newSize = parseFloat(currentSize) + 5;
         yesBtn.style.fontSize = newSize + "px";
 
-        // Make no smaller
         let noSize = window.getComputedStyle(noBtn).fontSize;
         let smallerSize = parseFloat(noSize) - 2;
         if (smallerSize > 8) {
