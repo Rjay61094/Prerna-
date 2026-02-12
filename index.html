@@ -4,104 +4,86 @@
     <title>For Prerna ❤️</title>
     <style>
         body {
-            margin: 0;
-            height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
+            text-align: center;
             font-family: 'Georgia', serif;
             background: linear-gradient(135deg, #ffd6e0, #ffeef2);
-            text-align: center;
-            overflow: hidden;
+            margin-top: 120px;
         }
 
         h1 {
-            font-size: 38px;
+            font-size: 35px;
             color: #8b004f;
-            margin-bottom: 10px;
-        }
-
-        p {
-            font-size: 20px;
-            color: #5a0033;
-            max-width: 600px;
-            margin-bottom: 40px;
         }
 
         button {
             padding: 15px 30px;
             font-size: 18px;
-            margin: 15px;
+            margin: 20px;
             border-radius: 30px;
             border: none;
             cursor: pointer;
             transition: 0.3s;
         }
 
-        .yes {
+        #yesBtn {
             background-color: #c9184a;
             color: white;
         }
 
-        .yes:hover {
-            transform: scale(1.1);
-        }
-
-        .no {
+        #noBtn {
             background-color: #6c757d;
             color: white;
-            position: absolute;
-        }
-
-        .heart {
-            position: absolute;
-            color: #ff4d6d;
-            font-size: 20px;
-            animation: float 5s infinite;
-        }
-
-        @keyframes float {
-            0% {transform: translateY(100vh);}
-            100% {transform: translateY(-10vh);}
         }
     </style>
 </head>
 
 <body>
 
-<h1>Prerna,</h1>
-<p>
-I met you in my 2025.  
-You slipped into my days quietly,  
-and left your mark on every thought I dared to keep.  
+<h1 id="question">
+Prerna, will you be mine in 2026? ❤️
+</h1>
 
-Do I get to carry you into my 2026?
-</p>
-
-<button class="yes" onclick="location.href='yes.html'">Yes ❤️</button>
-<button class="no" id="noBtn">No 🙈</button>
+<button id="yesBtn" onclick="location.href='yes.html'">Yes ❤️</button>
+<button id="noBtn" onclick="handleNo()">No 😢</button>
 
 <script>
+    let noCount = 0;
     const noBtn = document.getElementById("noBtn");
+    const yesBtn = document.getElementById("yesBtn");
+    const question = document.getElementById("question");
 
-    noBtn.addEventListener("mouseover", function() {
-        noBtn.style.left = Math.random() * window.innerWidth + "px";
-        noBtn.style.top = Math.random() * window.innerHeight + "px";
-    });
+    const messages = [
+        "Are you sure? 🥺",
+        "Think again… carefully 😌",
+        "I'll bring coffee forever ☕",
+        "I’ll listen to all your stories.",
+        "Even the long ones. Promise.",
+        "Okay this is getting serious.",
+        "You’re enjoying this, aren’t you?",
+        "Last chance before I get dramatic 😭"
+    ];
 
-    // Floating hearts
-    setInterval(() => {
-        const heart = document.createElement("div");
-        heart.className = "heart";
-        heart.innerHTML = "❤️";
-        heart.style.left = Math.random() * window.innerWidth + "px";
-        document.body.appendChild(heart);
+    function handleNo() {
+        if (noCount < messages.length) {
+            question.innerText = messages[noCount];
+        } else {
+            question.innerText = "Fine. The Yes button is clearly better anyway 😌";
+        }
 
-        setTimeout(() => {
-            heart.remove();
-        }, 5000);
-    }, 500);
+        noCount++;
+
+        // Make yes bigger
+        let currentSize = window.getComputedStyle(yesBtn).fontSize;
+        let newSize = parseFloat(currentSize) + 5;
+        yesBtn.style.fontSize = newSize + "px";
+
+        // Make no smaller
+        let noSize = window.getComputedStyle(noBtn).fontSize;
+        let smallerSize = parseFloat(noSize) - 2;
+        if (smallerSize > 8) {
+            noBtn.style.fontSize = smallerSize + "px";
+        }
+    }
 </script>
 
 </body>
