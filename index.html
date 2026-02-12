@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>For Prerna ❤️</title>
+    <style>
+        body {
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            font-family: 'Georgia', serif;
+            background: linear-gradient(135deg, #ffd6e0, #ffeef2);
+            text-align: center;
+            overflow: hidden;
+        }
+
+        h1 {
+            font-size: 38px;
+            color: #8b004f;
+            margin-bottom: 10px;
+        }
+
+        p {
+            font-size: 20px;
+            color: #5a0033;
+            max-width: 600px;
+            margin-bottom: 40px;
+        }
+
+        button {
+            padding: 15px 30px;
+            font-size: 18px;
+            margin: 15px;
+            border-radius: 30px;
+            border: none;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .yes {
+            background-color: #c9184a;
+            color: white;
+        }
+
+        .yes:hover {
+            transform: scale(1.1);
+        }
+
+        .no {
+            background-color: #6c757d;
+            color: white;
+            position: absolute;
+        }
+
+        .heart {
+            position: absolute;
+            color: #ff4d6d;
+            font-size: 20px;
+            animation: float 5s infinite;
+        }
+
+        @keyframes float {
+            0% {transform: translateY(100vh);}
+            100% {transform: translateY(-10vh);}
+        }
+    </style>
+</head>
+
+<body>
+
+<h1>Prerna,</h1>
+<p>
+I met you in my 2025.  
+You slipped into my days quietly,  
+and left your mark on every thought I dared to keep.  
+
+Do I get to carry you into my 2026?
+</p>
+
+<button class="yes" onclick="location.href='yes.html'">Yes ❤️</button>
+<button class="no" id="noBtn">No 🙈</button>
+
+<script>
+    const noBtn = document.getElementById("noBtn");
+
+    noBtn.addEventListener("mouseover", function() {
+        noBtn.style.left = Math.random() * window.innerWidth + "px";
+        noBtn.style.top = Math.random() * window.innerHeight + "px";
+    });
+
+    // Floating hearts
+    setInterval(() => {
+        const heart = document.createElement("div");
+        heart.className = "heart";
+        heart.innerHTML = "❤️";
+        heart.style.left = Math.random() * window.innerWidth + "px";
+        document.body.appendChild(heart);
+
+        setTimeout(() => {
+            heart.remove();
+        }, 5000);
+    }, 500);
+</script>
+
+</body>
+</html>
